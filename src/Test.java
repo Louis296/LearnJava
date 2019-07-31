@@ -5,7 +5,6 @@ class Car {
 	public Car() {
 		System.out.println("Making a Car...");
 	}
-	
 	public void setsize(int i) {
 		if(i>=10) {
 			size=i;
