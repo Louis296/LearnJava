@@ -13,6 +13,9 @@ class dog extends Animal{
 	public dog(String n) {
 		super(n);
 	}
+	public dog() {
+		this("No name");
+	}
 	public void sayname(){
 		System.out.println("My name is "+getname());
 	}
@@ -24,5 +27,7 @@ public class AnimalPlaying {
 		// TODO Auto-generated method stub
 		dog d=new dog("Diannao");
 		d.sayname();
+		dog d1=new dog();
+		d1.sayname();
 	}
 }
