@@ -2,6 +2,10 @@
 abstract class Animal{
 	private String name;
 	static int AnimalCount=0;
+	public static final int MODEL;
+	static {
+		MODEL=520;
+	}
 	public String getname(){
 		return name;
 	}
@@ -34,6 +38,7 @@ class cat extends Animal{
 	}
 	
 }
+
 public class AnimalPlaying {
 
 	public static void main(String[] args) {
@@ -47,5 +52,6 @@ public class AnimalPlaying {
 		
 		System.out.println(Animal.AnimalCount);
 		System.out.println(dog.DogCount);
+		System.out.println(Animal.MODEL);
 	}
 }
