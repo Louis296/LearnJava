@@ -15,7 +15,7 @@ abstract class Animal{
 	}
 }
 
-class dog extends Animal{
+final class dog extends Animal{
 	static int DogCount=0;
 	public dog(String n) {
 		super(n);
@@ -29,7 +29,7 @@ class dog extends Animal{
 	}
 }
 
-class cat extends Animal{
+final class cat extends Animal{
 	public cat(String n) {
 		super(n);
 	}
