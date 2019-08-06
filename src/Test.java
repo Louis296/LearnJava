@@ -6,7 +6,7 @@ class Car {
 	public Car() {
 		System.out.println("Making a Car...");
 	}
-	public final void setsize(int i) {
+	public final void setsize(Integer i) {
 		if(i>=10) {
 			size=i;
 		}
@@ -39,6 +39,10 @@ public class Test{
 		System.out.print(cars[1].name);
 		ElectricCar a=(ElectricCar) cars[1];
 		a.belling();
+		
+		double d=Double.parseDouble("440.24");
+		boolean b=new Boolean("true").booleanValue();
+		System.out.println(d+" "+b);
 	}
 	
 }
