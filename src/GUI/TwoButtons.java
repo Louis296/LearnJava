@@ -24,7 +24,7 @@ public class TwoButtons {
 		JButton colorButton=new JButton("Change Circle");
 		colorButton.addActionListener(new ColorListener());
 		
-		JLabel title=new JLabel("A Colorful Circle!");
+		//JLabel title=new JLabel("A Colorful Circle!");
 		
 		label=new JLabel("I'm a label");
 		MyDrawPanel drawPanel=new MyDrawPanel();
@@ -32,8 +32,8 @@ public class TwoButtons {
 		frame.getContentPane().add(BorderLayout.SOUTH, colorButton);
 		frame.getContentPane().add(BorderLayout.CENTER, drawPanel);
 		frame.getContentPane().add(BorderLayout.EAST, labelButton);
-		frame.getContentPane().add(BorderLayout.WEST, label);
-		frame.getContentPane().add(BorderLayout.NORTH, title);
+		frame.getContentPane().add(BorderLayout.NORTH, label);
+		//frame.getContentPane().add(BorderLayout.NORTH, title);
 		
 		frame.setSize(400, 400);
 		frame.setVisible(true);
