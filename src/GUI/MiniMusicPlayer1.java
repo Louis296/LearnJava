@@ -17,6 +17,7 @@ public class MiniMusicPlayer1{
 	public void setUpGui() {
 		m1=new MyDrawPanel();
 		f.setContentPane(m1);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setBounds(30, 30, 300, 300);
 		f.setVisible(true);
 	}
@@ -68,7 +69,7 @@ public class MiniMusicPlayer1{
 		
 		public void paintComponent(Graphics g) {
 			if(msg) {
-				Graphics2D g2=(Graphics2D) g;
+				
 				
 				int r=(int)(Math.random()*250);
 				int gr=(int)(Math.random()*250);
