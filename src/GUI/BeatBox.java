@@ -4,6 +4,7 @@ import javax.sound.midi.*;
 import javax.swing.*;
 import java.util.*;
 import java.awt.event.*;
+import java.io.*;
 
 public class BeatBox {
 	JPanel mainPanel;
@@ -26,7 +27,7 @@ public class BeatBox {
 	}
 	
 	public void buildGUI() {
-		theFrame=new JFrame("Beat Box Ver1.00   by Louis296");
+		theFrame=new JFrame("Beat Box Ver1.20   by Louis296");
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		BorderLayout layout=new BorderLayout();
 		JPanel background=new JPanel(layout);
@@ -64,11 +65,18 @@ public class BeatBox {
 		JMenuItem newMenuItem=new JMenuItem("New");
 		JMenuItem openMenuItem=new JMenuItem("Open");
 		JMenuItem saveMenuItem=new JMenuItem("Save");
+		newMenuItem.addActionListener(new NewMenuListener());
+		openMenuItem.addActionListener(new OpenMenuListener());
 		saveMenuItem.addActionListener(new SaveMenuListener());
 		fileMenu.add(newMenuItem);
 		fileMenu.add(openMenuItem);
 		fileMenu.add(saveMenuItem);
 		menuBar.add(fileMenu);
+		
+		JMenu helpMenu=new JMenu("Help");
+		JMenuItem aboutMenuItem=new JMenuItem("About");
+		helpMenu.add(aboutMenuItem);
+		menuBar.add(helpMenu);
 		
 		theFrame.getContentPane().add(background);
 		theFrame.setJMenuBar(menuBar);
@@ -168,12 +176,67 @@ public class BeatBox {
 		}
 	}
 	
+	public class NewMenuListener implements ActionListener{
+		public void actionPerformed(ActionEvent event) {
+			
+			for(int i=0;i<256;i++) {
+				JCheckBox check=(JCheckBox) checkboxList.get(i);
+				check.setSelected(false);
+			}
+		}
+	}
+	
 	public class SaveMenuListener implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
 			JFileChooser fileSave=new JFileChooser();
 			fileSave.showSaveDialog(theFrame);
+			
+			boolean[] checkboxState=new boolean[256];
+			for(int i=0;i<256;i++) {
+				JCheckBox check=(JCheckBox) checkboxList.get(i);
+				if(check.isSelected()) {
+					checkboxState[i]=true;
+				}
+			}
+			
+			try {
+				FileOutputStream filestream=new FileOutputStream(fileSave.getSelectedFile()); 
+				ObjectOutputStream os=new ObjectOutputStream(filestream);
+				os.writeObject(checkboxState);
+				os.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 	}
+	
+	public class OpenMenuListener implements ActionListener{
+		public void actionPerformed(ActionEvent event) {
+			JFileChooser fileOpen=new JFileChooser();
+			fileOpen.showOpenDialog(theFrame);
+			
+			boolean[] checkboxState=null;
+			
+			try {
+				FileInputStream filestream=new FileInputStream(fileOpen.getSelectedFile());
+				ObjectInputStream os=new ObjectInputStream(filestream);
+				checkboxState=(boolean[]) os.readObject();
+				os.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}
+			
+			for(int i=0;i<256;i++) {
+				JCheckBox check=(JCheckBox) checkboxList.get(i);
+				if(checkboxState[i]) {
+					check.setSelected(true);
+				}else {
+					check.setSelected(false);
+				}
+			}
+		}
+	}
+	
 	public void makeTracks(int[] list) {
 		
 		for(int i=0;i<16;i++) {
