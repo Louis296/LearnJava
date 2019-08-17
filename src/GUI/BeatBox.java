@@ -75,6 +75,7 @@ public class BeatBox {
 		
 		JMenu helpMenu=new JMenu("Help");
 		JMenuItem aboutMenuItem=new JMenuItem("About");
+		aboutMenuItem.addActionListener(new AboutMenuListener());
 		helpMenu.add(aboutMenuItem);
 		menuBar.add(helpMenu);
 		
@@ -237,6 +238,23 @@ public class BeatBox {
 		}
 	}
 	
+	public class AboutMenuListener implements ActionListener{
+		public void actionPerformed(ActionEvent event) {
+			JDialog about=new JDialog(theFrame,"About");
+			JLabel aboutMessage=new JLabel("Beat Box ver1.20 by Louis296",JLabel.CENTER);
+			
+			about.add(BorderLayout.CENTER,aboutMessage);		
+			Point p = theFrame.getLocation();
+			Dimension d = theFrame.getSize();
+			int x = p.x+(d.width-300)/2;  //计算
+			int y = p.y+(d.height-100)/2; 
+			
+			about.setLocation(x,y);   //为dialog设置位置
+			about.setSize(300,100);
+			about.setVisible(true);
+			//JOptionPane.showMessageDialog(theFrame, "Beat Box ver1.20 by Louis296", "About", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
 	public void makeTracks(int[] list) {
 		
 		for(int i=0;i<16;i++) {
