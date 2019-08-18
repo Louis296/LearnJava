@@ -241,7 +241,7 @@ public class BeatBox {
 	public class AboutMenuListener implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
 			JDialog about=new JDialog(theFrame,"About");
-			JLabel aboutMessage=new JLabel("Beat Box ver1.20 by Louis296",JLabel.CENTER);
+			JLabel aboutMessage=new JLabel("<html>Beat Box ver1.20<br>by Louis296</html>",JLabel.CENTER);
 			
 			about.add(BorderLayout.CENTER,aboutMessage);		
 			Point p = theFrame.getLocation();
