@@ -21,9 +21,10 @@ public class DailyAdviceClient {
 			System.out.println("Today you should:"+advice);
 			
 			reader.close();
+			s.close();
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
 	}
-
+	
 }
