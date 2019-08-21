@@ -13,6 +13,8 @@ public class JukeBox1 {
 	public void go() {
 		getSongs();
 		System.out.println(songList);
+		Collections.sort(songList);
+		System.out.println(songList);
 	}
 	
 	public void getSongs() {
@@ -23,6 +25,7 @@ public class JukeBox1 {
 			while((line=reader.readLine())!=null) {
 				addSong(line);
 			}
+			reader.close();
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
